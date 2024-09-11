@@ -104,14 +104,12 @@ def setup():
         colonnaClienti=table.select('tr td:nth-of-type(3)')
         listaClienti=[]
         for cliente in colonnaClienti:
-            #listaClienti.append(cliente.text.strip())
             listaClienti.append(" ".join(cliente.text.strip().split()))
 
         #estrae la prima riga delle descrizioni delle commesse e crea una lista
         listaDescrizioni1 = []
         estrazDescrizioni = soup.find_all('span', {'class':'green'})
         for descrizione1 in estrazDescrizioni:
-            #listaDescrizioni1.append(descrizione1.text.strip())
             listaDescrizioni1.append(" ".join(descrizione1.text.strip().split()))
 
         #estrae la seconda riga delle descrizioni delle commesse e crea una lista
@@ -131,7 +129,6 @@ def setup():
         #crea dizionario delle task per la commessa COSTI
         global listaTaskCosti
         findCommCosti=re.compile('costi.*',flags=re.IGNORECASE)
-        #commCostiURL=str.replace(re.search("(?P<url>https?://[^\s]+)", table.find(string=findCommCosti).find_parent('td').get('onclick')).group("url"),"'",'')
         listaCommCosti = table.find_all(string=findCommCosti)
         listaCommCostiURL = []
         for comm in listaCommCosti:
@@ -152,7 +149,6 @@ def setup():
             taskCosti=dict(zip(numberTasks,listaTaskCosti))
 
             clientCosti=[entry for entry in listaClientiDescrizioni if ' COSTI ' in entry or ' Costi ' in entry or ' costi ' in entry]
-            #listaClientiDescrizioni.remove(clientCosti[0]) #rimuovere asterisco se si vuole rimuovere la commessa costi generica (senza task)
             for task in listaTaskCosti:
                 clientCostiTask=clientCosti[nCommCosti]+' | '+task
                 listClientSort.append(clientCostiTask)
@@ -276,7 +272,7 @@ def setup():
             currRow+=1
             key+=1
         wb.save('AutoGestionale.xlsx')
-        if dt.hour in range(9,14) or dt.hour in range(14,17) or (dt.hour==17 and dt.minute<45):###
+        if dt.hour in range(9,14) or dt.hour in range(14,17) or (dt.hour==17 and dt.minute<45):
             mainTextBox.configure(state='normal')
             clearMainTextBox()
             mainTextBox.insert('end', "Seleziona il cliente su cui intendi lavorare per la prossima mezz'ora.",'tagCenter')
