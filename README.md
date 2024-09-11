@@ -6,7 +6,7 @@ This is an application designed to help users log hours worked on different clie
 ## Requirements
 - **Python 3.x**
 - **Libraries**: requests, bs4, openpyxl, tkinter, plyer, selenium
-- **If using Windows**: putting the "logo-gestionale.ico" file in the same folder as the .py file is required if on Windows operating system.
+- **If using Windows**: putting the "logo-gestionale.ico" file in the same folder as the .py file is required on Windows operating system.
 
 ## Usage
 - **Login**: Enter your credentials (username and password) in the login window.
